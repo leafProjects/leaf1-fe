@@ -1,0 +1,39 @@
+dist: trusty
+
+sudo: false
+
+language: node_js
+
+node_js:
+  - '8'
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+cache:
+  directories:
+    - "./node_modules"
+
+install:
+  - npm install
+
+before_script: if [[ $TRAVIS_BRANCH != "master" ]]; then ./script/travis/createPullRequest.sh; fi
+
+script:
+  - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: e2Nn2yXaYmBMq/ruotGimJZ6PH1hjFuM2e0Ft21z28G1S7CebOWVaoZCoHV7DHMf5BL7fncCfB5UrDDUIZIQIYIKYC6LBfZP17wTMCRKME8kuewlxdS+tMgGt3PQ5cfy8UU+lS/XzVTQWzWJX4fhFPcbPAO3wUeLQdSCaCDmjsmkzitE8oa2s8ocnpxVh0OY+3FBAXEmvQhPmiTVmxVOJALHU4IkmMebPRGXwKhQxgrqJsTduSlsGDh4CMFlw2bmHbMiM0qR3rtuDC3ZnUVshtTKxjraja/worzjgjsO13ghgrf9KcWmZq0ucbShiEqOWy9VXH4kj9v2zYWbhdMonHhOZ0RW5VPZjgGJrZd2mK7YziuSvBdL/tuEUDvth/cFtBuEOZibG2Lg940xqTV1AZICqflsRehVLu2AgZD8bX9hiWiDZtqkIUxCTySXdFHXZc81c9HU//sRwTzbTXTQeSZpA4B2OTTY+BEleE/4+1HauwyMtOpcyYiCai/BP59mGbLbpMGhhpUA4/O9HE3OwUf+kqNR6xLlG1BDRtKizKlHtpToJ9/54L+/tNFIj7DOPi2GSUdR9+LHH0btOi2DKo+gxSb+AMpKr8cDHr4uS4M4cz0qmD2vZTjnbK3FoJdH5PqYLHHNKT7MMk1GUC5nTqjzpsRhgoKATKvLvAbFU4Y=
+  app: gymmappiamoci-fe
+  on:
+    repo: leafProjects/leaf1-fe
+
+env:
+  matrix:
+    secure: QwltLXneL0TWdM4lepdge5c86EP8kPQ2d5wAlLhZI/eBVMPYkOEpFmglP8uthnYaVpvMLNM9CCYtXyP7itXzLDzJrgIzgVIbpm0mNhdSpM5faQvv1Jq9DoxbjqTNrQ0XF+pzEVoA5ypR46pufW6L1IZ+5wk7Z8F9BZMbadBDIb92wM5lnzsWfPhB4/WbPGv6DVuM0Hy3iLgzT46d0Dt9gV7Ur1KwnxbNuLqeACNdAWFLvC9ZSUOyIsRaWp2OdNaExlAUAxvClXVes4AJV9qTo3dUeF47CbDJchi0Z6yTJL3X7TmNpDQcbbfl5bngzadOxvI/UFfH+JW3AgUn/flA84j1lbydAvGSAD64aZ6uJhub8HfHAsK7JsHQFk0fPJ2Ry2tK6TDsZ+ifJ2EAJ0wrdMoqrEhMTgMBQ+5bWQ1nG4xewvLEnWYovj1PihOfz5f013H9Tl9vIzTUv6cZ770bV9D6DsqKWVm/dGMM7sR4iL/I2kLOwetdl+FP94L+D3ZEz9pA0Rh4tVwea7MQEUMGRSzF0ZQHmrP4K+bUL386zcpjuSJTeJwTBqQoGsENlNha4CjKKhNTwI6j0A8wcffiDvmpPXM/VteGBK8STkr00eLVQ3B+M2m33uo5TR1eTGfN7XOfdsIuB1WvEgdY8XihCtp+4b5o9uZt13AiWJ32t7E=
