@@ -1,7 +1,9 @@
 dist: trusty
+
 sudo: false
 
 language: node_js
+
 node_js:
   - '8'
 
@@ -14,7 +16,7 @@ addons:
 
 cache:
   directories:
-    - ./node_modules
+    - "./node_modules"
 
 install:
   - npm install
@@ -24,9 +26,6 @@ before_script: if [[ $TRAVIS_BRANCH != "master" ]]; then ./script/travis/createP
 script:
   - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
 
-env:
-  matrix:
-    secure: HG+xpdMFrm/mL8hL/29E3PN9hFZIkbH4YKCqyQlLxbX589ch8mGmFX7jI0JaiCumFBB9G2Kfh8EhBE21BKIN9eSE7lsoUMx5AEvo4lTBLOB/bMUK11l6NLA+8/G68Je8RxtFoXp0sRMmFfnoqUBA+yLo/z8N7PMe8bDdu751m/P1AcyhBknDAqJSmtG7LtvLjQu8djX6y0bY1nvalSeZB688WAs074xB257qyz22hRKhI3wsl3PmeiYL+nuprH5xDYO1FbIIqghHNZec+DLmDSdl7AwrjpSqYgu4pEQfa74PEVYiDmuONxKib3X2Su+4VfL7ana9Dpbv/3fVNYhRp03SgJMc+XV34xJ0jVXeT0TtjGklgrFOI+IVmqmo6d4NVifFxgvsotR9HuGpfL6+1RQBw0/wDwk9sMiP8WzJsP2G+D7XuoJoI7uvHLbXmmKdJn0jbETZzI+/jgK27CLwWBMElzYpQemFMSWJGuXy3WmkIhGNNjbRO4mT1Pr+5JtHkQz6wCIrFufPJ+UM0xHkvUYGCrB63RgRHq2NwiZ3uyn0ZvpJbnndKfLtbiBg2BTA+ZoRgJT2Z+JFnc/FL3SqMDOfqAbLDUpKfplW/+yVGftyfA9PcdAo8e7nC5PcT85t71LbDfTw3VYlRm3rwJo4kNfWS0YZDjQt947NpYY5UgM=
 deploy:
   provider: heroku
   api_key:
@@ -34,3 +33,7 @@ deploy:
   app: gymmappiamoci-fe
   on:
     repo: leafProjects/leaf1-fe
+
+env:
+  matrix:
+    secure: QwltLXneL0TWdM4lepdge5c86EP8kPQ2d5wAlLhZI/eBVMPYkOEpFmglP8uthnYaVpvMLNM9CCYtXyP7itXzLDzJrgIzgVIbpm0mNhdSpM5faQvv1Jq9DoxbjqTNrQ0XF+pzEVoA5ypR46pufW6L1IZ+5wk7Z8F9BZMbadBDIb92wM5lnzsWfPhB4/WbPGv6DVuM0Hy3iLgzT46d0Dt9gV7Ur1KwnxbNuLqeACNdAWFLvC9ZSUOyIsRaWp2OdNaExlAUAxvClXVes4AJV9qTo3dUeF47CbDJchi0Z6yTJL3X7TmNpDQcbbfl5bngzadOxvI/UFfH+JW3AgUn/flA84j1lbydAvGSAD64aZ6uJhub8HfHAsK7JsHQFk0fPJ2Ry2tK6TDsZ+ifJ2EAJ0wrdMoqrEhMTgMBQ+5bWQ1nG4xewvLEnWYovj1PihOfz5f013H9Tl9vIzTUv6cZ770bV9D6DsqKWVm/dGMM7sR4iL/I2kLOwetdl+FP94L+D3ZEz9pA0Rh4tVwea7MQEUMGRSzF0ZQHmrP4K+bUL386zcpjuSJTeJwTBqQoGsENlNha4CjKKhNTwI6j0A8wcffiDvmpPXM/VteGBK8STkr00eLVQ3B+M2m33uo5TR1eTGfN7XOfdsIuB1WvEgdY8XihCtp+4b5o9uZt13AiWJ32t7E=
