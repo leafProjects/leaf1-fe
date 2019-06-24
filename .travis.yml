@@ -1,39 +1,33 @@
 dist: trusty
-
 sudo: false
-
 language: node_js
-
 node_js:
-  - '8'
-
+- '8'
 addons:
   apt:
     sources:
-      - google-chrome
+    - google-chrome
     packages:
-      - google-chrome-stable
-
+    - google-chrome-stable
 cache:
   directories:
-    - "./node_modules"
-
+  - "./node_modules"
 install:
-  - npm install
-
-before_script: if [[ $TRAVIS_BRANCH != "master" ]]; then ./script/travis/createPullRequest.sh; fi
-
+- npm install
+before_script: if [[ $TRAVIS_BRANCH != "master" ]]; then ./script/travis/createPullRequest.sh;
+  fi
 script:
-  - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
-
+- npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
 deploy:
   provider: heroku
   api_key:
-    secure: Yhf6/bZ5mOiKlj5momMmq+nbZlP9ZrwVAVgAWoXPiDyGF0GhIVhbCEfj03acL8azlBwmm2KSCpCOw28jBcF0HQWFkUz1eRZB+4Nz42KTw4fwHmhbGlHE0McNR//I04TfPutoatqGsoHsgPAuf0k7J5WEe/CmUkglaTgJ5vnraApnhQJMPqDkxQKwGggT6uIt4poTrXu+o8uhUKrcn6ve4qmOJ1/PUbgCWYLrjICCfPs+ltjT5aLKKRgx2J2nYas4nP6svTDqCkB1q31gr4HTWzSAXPrStrDL8mgLOHW/adT2OgcmTSpME7+OQ1buiOwPOtUwXyU3Ck53QDtdrI66rYKW2ITnFHspkNTl3kDwyDXZLSAWEav85mKXqNDXeXm39yzHPq8VihogHOcfusDpthwkZk8mYzVIQlVEvuc1i3R89ykzYsWzZ8ejiWYzcjL/ItgxWzEfCvKQFf6r2MUC7MWEzSLvajGITfEVEHefM2p+91wE7qsUCHOB/HIGL+/4OF0LLmN0IufLaPAEacKWotIj2uMKbvn8v4j9rcBQJjSXRHU0RjR+HxkDBNbbA8y0Ec3eSa8YR3Ue1kBTNds/xy6N1UvZhoQylVT6EvUhXG0BBMs2ZUO5glMGYH1B3Gya5D6uTzQMuR8dsi8VL3hksoozxqUdGSCW7rfrM/cYWx4=
+    secure: FlKK9mrRwkbI9gUfh9GBpbWI28QUvePxMAOAuhY1sBajTB5UdRGDHeN3jak1hpGjciv119jehaMkskw+NdfcUyH4mC4HPWrk8npPAbmRBBuo4NKs1mYrtwAX5bHWypQ4DNZZOkAxpBKHvFFPikmJScpBJyl0pCsf0bfDpJLKI6bfDbGsIw
+      017kMee/vXWCtA2kvi0w/N9oJDKo4L4crR6bQ36b2pagLZvg1+J4TPmqZaYI1OAV5BXngF3V8IC2E29E3KfXJRg9N2X0gCp2wLZ9BCtyXMXbEMR9CNEl7Og2lreP8OQ+bXAOsq24dP9j1goeA8CdtDfnj1qes4Mq7LiX/8dLs2jFrC8BDbsXBRsnrGcBf
+      HOjqZG58lEk2kF8bhl/z/i3EviymN9/bIcdwSk0rXoZJ52Vn9LwG8bFFlhC4XzFW+LBJNOyipvw1n6LnSKOXADnEE+WNnY08L9Rlx+ro0B+H7Jc0HVTa3tq+8eYDUqr4DWL3/PTl3Yq5rw7y8ScB3+e47elc3g5MTqaxalknbvXLEC4cGdNFMWBgGOtaV
+      XzysL1SZHyWDjtcHSLsWU2w7BnknHZDlJJEJsvVgcYTXdtY0V1z385hYPErDHzS1+GbYXdKljttUXogReQylmC0AE74vgZBR+UgxJnOm/sj02B8YqQEuPE4Mql7vZDs=
   app: gymmappiamoci-fe
   on:
     repo: leafProjects/leaf1-fe
-
 env:
   matrix:
     secure: QwltLXneL0TWdM4lepdge5c86EP8kPQ2d5wAlLhZI/eBVMPYkOEpFmglP8uthnYaVpvMLNM9CCYtXyP7itXzLDzJrgIzgVIbpm0mNhdSpM5faQvv1Jq9DoxbjqTNrQ0XF+pzEVoA5ypR46pufW6L1IZ+5wk7Z8F9BZMbadBDIb92wM5lnzsWfPhB4/WbPGv6DVuM0Hy3iLgzT46d0Dt9gV7Ur1KwnxbNuLqeACNdAWFLvC9ZSUOyIsRaWp2OdNaExlAUAxvClXVes4AJV9qTo3dUeF47CbDJchi0Z6yTJL3X7TmNpDQcbbfl5bngzadOxvI/UFfH+JW3AgUn/flA84j1lbydAvGSAD64aZ6uJhub8HfHAsK7JsHQFk0fPJ2Ry2tK6TDsZ+ifJ2EAJ0wrdMoqrEhMTgMBQ+5bWQ1nG4xewvLEnWYovj1PihOfz5f013H9Tl9vIzTUv6cZ770bV9D6DsqKWVm/dGMM7sR4iL/I2kLOwetdl+FP94L+D3ZEz9pA0Rh4tVwea7MQEUMGRSzF0ZQHmrP4K+bUL386zcpjuSJTeJwTBqQoGsENlNha4CjKKhNTwI6j0A8wcffiDvmpPXM/VteGBK8STkr00eLVQ3B+M2m33uo5TR1eTGfN7XOfdsIuB1WvEgdY8XihCtp+4b5o9uZt13AiWJ32t7E=
