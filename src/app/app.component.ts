@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'leaf1-fe';
+
+  title: string;
+
+  constructor() {
+    this.title = '> FORM ANGULAR <';
+  }
 }

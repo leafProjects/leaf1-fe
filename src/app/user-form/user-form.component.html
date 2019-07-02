@@ -1,0 +1,24 @@
+<div class="card my-5">
+  <div class="card-body">
+    // la direttiva ngSubmit chiama il metodo onSubmit() quando il form viene sottomesso
+    // la variabile template #userForm consente ad Angular di tenere traccia del form
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        // La direttiva ngModel fornisce il 2-way data binding tra il form e la User class
+        <input type="text" [(ngModel)]="user.name"
+               class="form-control" id="name" name="name" placeholder="Enter your name"
+               required #name="ngModel">
+      </div>
+      <div [hidden]="!name.pristine" class="alert alert-danger">Nome obbligatorio</div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" [(ngModel)]="user.email"
+               class="form-control" id="email" name="email" placeholder="Enter your email address"
+               required #email="ngModel">
+        <div [hidden]="!email.pristine" class="alert alert-danger">Email obbligatoria</div>
+      </div>
+      <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-info">Invia</button>
+    </form>
+  </div>
+</div>
